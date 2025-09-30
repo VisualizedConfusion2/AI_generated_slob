@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AI_generated_slob.Interface;
+using AI_generated_slob.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,6 +47,26 @@ namespace AI_generated_slob.DatabaseRepo
                 _context.Books.Remove(book);
                 _context.SaveChanges();
             }
+        }
+
+        IEnumerable<Book> IBookRepository.GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        Book? IBookRepository.GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(Book book)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Book book)
+        {
+            throw new NotImplementedException();
         }
     }
 }
