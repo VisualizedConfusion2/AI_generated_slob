@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace AI_generated_slob.Models
 {
-    internal class Address
+    public class Address
     {
+
         public string Country { get; set; }
         public string Region { get; set; }
         public string PostalCode { get; set; }
@@ -16,6 +17,15 @@ namespace AI_generated_slob.Models
         public string Floor { get; set; }
         public string ApartmentNumber { get; set; }
 
-
+        public Address(string country, string region, string postalCode, string city, string addressLine, string floor, string apartmentNumber)
+        {
+            Country = country;
+            Region = region;
+            PostalCode = postalCode;
+            City = city;
+            AddressLine = addressLine;
+            Floor = floor;
+            ApartmentNumber = apartmentNumber;
+        }
     }
 }
