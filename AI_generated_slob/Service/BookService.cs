@@ -1,34 +1,49 @@
-﻿using AI_generated_slob.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AI_generated_slob.Interface;
+using AI_generated_slob.Models;
 
 namespace AI_generated_slob.Service
 {
-    public class BookService
+    public class BookService : IBookService
     {
-        private readonly List<Book> _books;
+        private readonly IBookRepository _bookRepository;
 
-        public BookService()
+        public BookService(IBookRepository bookRepository)
         {
-            _books = new List<Book>
-            {
-                new Book { BookID = 1, Title = "Clean Code", Author = "Robert C. Martin", Price = 299 },
-                new Book { BookID = 2, Title = "The Pragmatic Programmer", Author = "Andrew Hunt", Price = 349 },
-                new Book { BookID = 3, Title = "Design Patterns", Author = "Erich Gamma", Price = 399 }
-            };
+            _bookRepository = bookRepository;
         }
 
-        public IEnumerable<Book> GetAllBooks()
+        public async Task<IEnumerable<Book>> GetAllBooksAsync()
         {
-            return _books;
+            return await _bookRepository.GetAllAsync();
         }
 
-        public Book? GetBookById(int id)
+        public async Task<Book?> GetBookAsync(int bookId)
         {
-            return _books.FirstOrDefault(b => b.BookID == id);
+            return await _bookRepository.GetByIdAsync(bookId);
+        }
+
+        public async Task CreateBookAsync(Book book)
+        {
+            if (string.IsNullOrWhiteSpace(book.Title))
+                throw new ArgumentException("Book must have a title.");
+
+            if (book.Price < 0)
+                throw new ArgumentException("Book price cannot be negative.");
+
+            await _bookRepository.AddAsync(book);
+        }
+
+        public async Task UpdateBookAsync(Book book)
+        {
+            if (book.BookID <= 0)
+                throw new ArgumentException("Invalid book ID.");
+
+            await _bookRepository.UpdateAsync(book);
+        }
+
+        public async Task DeleteBookAsync(int bookId)
+        {
+            await _bookRepository.DeleteAsync(bookId);
         }
     }
 }
