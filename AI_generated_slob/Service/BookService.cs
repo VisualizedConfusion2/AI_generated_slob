@@ -15,9 +15,9 @@ namespace AI_generated_slob.Service
         {
             _books = new List<Book>
             {
-                new Book { Id = 1, Title = "Clean Code", Author = "Robert C. Martin", Price = 299 },
-                new Book { Id = 2, Title = "The Pragmatic Programmer", Author = "Andrew Hunt", Price = 349 },
-                new Book { Id = 3, Title = "Design Patterns", Author = "Erich Gamma", Price = 399 }
+                new Book { BookID = 1, Title = "Clean Code", Author = "Robert C. Martin", Price = 299 },
+                new Book { BookID = 2, Title = "The Pragmatic Programmer", Author = "Andrew Hunt", Price = 349 },
+                new Book { BookID = 3, Title = "Design Patterns", Author = "Erich Gamma", Price = 399 }
             };
         }
 
@@ -28,7 +28,7 @@ namespace AI_generated_slob.Service
 
         public Book? GetBookById(int id)
         {
-            return _books.FirstOrDefault(b => b.Id == id);
+            return _books.FirstOrDefault(b => b.BookID == id);
         }
     }
 }
