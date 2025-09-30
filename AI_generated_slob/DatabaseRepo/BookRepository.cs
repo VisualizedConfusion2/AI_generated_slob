@@ -1,5 +1,6 @@
 ﻿using AI_generated_slob.Interface;
 using AI_generated_slob.Models;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +62,8 @@ namespace AI_generated_slob.DatabaseRepo
 
         public void Add(Book book)
         {
-            throw new NotImplementedException();
+            _context.Books.Add(book);
+            _context.SaveChanges();
         }
 
         public void Update(Book book)
