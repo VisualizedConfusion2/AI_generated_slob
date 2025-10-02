@@ -17,10 +17,10 @@ namespace AI_generated_slob.Models
         public Address UAddress { get; set; }
         public string Password { get; set; }
 
-        public User(int userID, UserTypes userType, string name, string email, string phone, Address uAddress, string password)
+        public User(string name, string email, string phone, Address uAddress, string password)
         {
-            UserID = userID;
-            UserType = userType;
+            //UserID =
+            UserType = UserTypes.Costumer;
             Name = name;
             Email = email;
             Phone = phone;

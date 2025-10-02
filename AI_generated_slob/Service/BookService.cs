@@ -1,34 +1,59 @@
 ﻿using AI_generated_slob.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AI_generated_slob.Repositories;
 
 namespace AI_generated_slob.Service
 {
-    public class BookService
+    public class BookService : IProductService
     {
-        private readonly List<Book> _books;
+        private readonly IProductRepository _productRepository;
 
-        public BookService()
+        public BookService(IProductRepository productRepository)
         {
-            _books = new List<Book>
-            {
-                new Book { BookID = 1, Title = "Clean Code", Author = "Robert C. Martin", Price = 299 },
-                new Book { BookID = 2, Title = "The Pragmatic Programmer", Author = "Andrew Hunt", Price = 349 },
-                new Book { BookID = 3, Title = "Design Patterns", Author = "Erich Gamma", Price = 399 }
-            };
+            _productRepository = productRepository;
         }
 
-        public IEnumerable<Book> GetAllBooks()
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return _books;
+            return await _productRepository.GetAllAsync();
         }
 
-        public Book? GetBookById(int id)
+        public async Task<Product?> GetProductAsync(int productId)
         {
-            return _books.FirstOrDefault(b => b.BookID == id);
+            return await _productRepository.GetByIdAsync(productId);
+        }
+
+        public async Task CreateProductAsync(Product product)
+        {
+            if (string.IsNullOrWhiteSpace(product.Title))
+                throw new ArgumentException("Product must have a title.");
+
+            if (product.Price < 0)
+                throw new ArgumentException("Product price cannot be negative.");
+
+            await _productRepository.AddAsync(product);
+        }
+
+        public async Task UpdateProductAsync(Product product)
+        {
+            if (product.ProductID <= 0)
+                throw new ArgumentException("Invalid product ID.");
+
+            await _productRepository.UpdateAsync(product);
+        }
+
+        public async Task DeleteProductAsync(int productId)
+        {
+            await _productRepository.DeleteAsync(productId);
+        }
+
+        public async Task<Product> Product(int productId)
+        {
+            // Implementation to satisfy IProductService interface.
+            // Reuse GetProductAsync logic, but ensure non-null return as per interface.
+            var product = await GetProductAsync(productId);
+            if (product == null)
+                throw new KeyNotFoundException($"Product with ID {productId} not found.");
+            return product;
         }
     }
 }
