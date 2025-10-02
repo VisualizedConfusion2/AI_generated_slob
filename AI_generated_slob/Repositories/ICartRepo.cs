@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AI_generated_slob.Interface
+namespace AI_generated_slob.Repositories
 {
     public interface ICartRepo
     {

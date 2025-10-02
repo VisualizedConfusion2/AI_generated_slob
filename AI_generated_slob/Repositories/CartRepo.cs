@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AI_generated_slob.DatabaseRepo
+namespace AI_generated_slob.Repositories
 {
    public class CartRepo
     {

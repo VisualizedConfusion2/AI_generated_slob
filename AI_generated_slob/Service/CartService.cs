@@ -1,4 +1,4 @@
-﻿using AI_generated_slob.Interface;
+﻿using AI_generated_slob.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
