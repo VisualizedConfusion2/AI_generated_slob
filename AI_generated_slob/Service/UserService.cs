@@ -1,5 +1,5 @@
-﻿using AI_generated_slob.Interface;
-using AI_generated_slob.Models;
+﻿using AI_generated_slob.Models;
+using AI_generated_slob.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
