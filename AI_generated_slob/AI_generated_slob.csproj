@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DatabaseRepo\" />
-    <Folder Include="Interface\" />
+    <Compile Remove="DatabaseRepo\**" />
+    <EmbeddedResource Remove="DatabaseRepo\**" />
+    <None Remove="DatabaseRepo\**" />
   </ItemGroup>
 
 </Project>
